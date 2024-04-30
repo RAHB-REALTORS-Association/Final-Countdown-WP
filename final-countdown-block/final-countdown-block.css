@@ -1,0 +1,127 @@
+.final-countdown-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fcb-days, .fcb-hours, .fcb-minutes, .fcb-seconds {
+  position: relative;
+  margin: 20px;
+  text-align: center;
+}
+
+/* Centering the SVG within its container to avoid any offset issues */
+.final-countdown-block svg {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: auto;
+  transform: rotate(-90deg);
+}
+
+.fcb-dial-background {
+  transition: transform 0.5s ease-in-out;
+}
+
+.fcb-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  display: block; /* Ensure the label is a block-level element */
+  margin-top: 15px; /* Spacing between the dial and the label */
+}
+
+.fcb-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the number in the circle */
+  z-index: 1; /* Ensures the number stays above the circle */
+}
+  
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) { /* Targets screens up to 768px wide */
+  .fcb-days, .fcb-hours, .fcb-minutes, .fcb-seconds {
+    margin: 10px; /* Reduced margin */
+    text-align: center;
+  }
+
+  .final-countdown-block svg {
+    width: 50px !important; /* Ensures this rule takes precedence */
+    height: 50px !important;
+    margin: auto;
+    transform: rotate(-90deg);
+  }
+
+  .fcb-dial-background {
+    stroke-width: 9 !important; /* Adjusts the stroke width for the smaller dials */
+  }
+
+  .fcb-label {
+    font-size: 9px; /* 50% of the original 18px */
+    margin-top: 8px; /* Adjusted spacing */
+  }
+
+  .fcb-value {
+    font-size: 12px;
+  }
+}
+
+.fcb-settings-panel {
+  background: #f9f9f9;
+  border: 1px solid #e1e1e1;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.fcb-settings-panel h3 {
+  font-size: 1.2em;
+  color: #333;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.fcb-settings-panel label {
+  display: block;
+  margin-bottom: 10px;
+  color: #666;
+  font-size: 16px;
+}
+
+.fcb-settings-panel input[type="text"],
+.fcb-settings-panel input[type="number"],
+.fcb-settings-panel input[type="datetime-local"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.fcb-settings-panel input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.fcb-settings-panel .color-picker {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.fcb-settings-panel .color-picker:hover {
+  border-color: #ccc;
+}
+
+/* Enhance visibility of selected color */
+.fcb-settings-panel .color-picker.selected {
+  box-shadow: 0 0 0 2px #555 inset;
+}
