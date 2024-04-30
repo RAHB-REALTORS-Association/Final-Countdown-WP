@@ -23,4 +23,4 @@ The Final Countdown Block is a simple, easy-to-use countdown timer for the WordP
 
 ## License
 
-The Final Countdown Block is licensed under the GPLv2. See the included `LICENSE` file for more details.
+The Final Countdown Block is licensed under the GPLv2. See the included [LICENSE](LICENSE) file for more details.
