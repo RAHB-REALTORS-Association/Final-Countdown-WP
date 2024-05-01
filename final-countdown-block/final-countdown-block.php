@@ -49,7 +49,7 @@ function final_countdown_block_register_block() {
         'attributes' => array(
             'dueDate' => array(
                 'type' => 'string',
-                'default' => '2024-06-30T23:59:59', // Ensure this matches the JavaScript default
+                'default' => '2024-07-01T03:59:59', // Ensure this matches the JavaScript default
             ),
             'showSeconds' => array(
                 'type' => 'boolean',
@@ -99,7 +99,7 @@ add_action('init', 'final_countdown_block_register_block');
 // Render callback
 function final_countdown_block_render_callback( $attributes ) {
     wp_set_script_translations( 'final-countdown-block-script', 'final-countdown-block' );
-    $due_date = isset($attributes['dueDate']) ? $attributes['dueDate'] : '2024-06-30T23:59:59';
+    $due_date = isset($attributes['dueDate']) ? $attributes['dueDate'] : '2024-07-01T03:59:59';
     $show_seconds = isset( $attributes['showSeconds'] ) ? $attributes['showSeconds'] : false;
     $end_message = isset( $attributes['endMessage'] ) ? $attributes['endMessage'] : 'It\'s time!';
     $end_message_color = isset( $attributes['endMessageColor'] ) ? $attributes['endMessageColor'] : '#333';

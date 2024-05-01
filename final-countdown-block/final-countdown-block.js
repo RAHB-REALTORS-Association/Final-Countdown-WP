@@ -18,7 +18,7 @@ wp.blocks.registerBlockType( 'final-countdown-block/countdown', {
     attributes: {
         dueDate: {
             type: 'string',
-            default: '2024-06-30T23:59:59',
+            default: '2024-07-01T03:59:59',
         },
         showSeconds: {
             type: 'boolean',
