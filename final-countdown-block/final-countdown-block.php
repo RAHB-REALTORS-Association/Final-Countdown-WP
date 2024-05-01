@@ -3,7 +3,7 @@
 Plugin Name: The Final Countdown Block
 Plugin URI: https://github.com/RAHB-REALTORS-Association/Final-Countdown-WP/
 Description: Adds a customizable countdown block to WordPress.
-Version: 1.0.0
+Version: 1.1.0
 Author: RAHB
 Author URI: https://lab.rahb.ca
 License: GPL-2.0
@@ -110,46 +110,41 @@ function final_countdown_block_render_callback( $attributes ) {
     $text_size = isset( $attributes['textSize'] ) ? $attributes['textSize'] : '24px';
     $label_color = isset( $attributes['labelColor'] ) ? $attributes['labelColor'] : '#666';
     $label_size = isset( $attributes['labelSize'] ) ? $attributes['labelSize'] : '18px';
-    ob_start(); ?>
-
-    <div class="final-countdown-block" data-due-date="<?php echo esc_attr(date('c', strtotime($due_date))); ?>" data-end-message="<?php echo esc_attr($end_message); ?>" data-end-message-color="<?php echo esc_attr($end_message_color); ?>" data-end-message-size="<?php echo esc_attr($end_message_size); ?>">
-        <div class="fcb-days">
-            <svg viewBox="0 0 100 100" class="dial">
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="#ddd" />
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="<?php echo esc_attr( $dial_color ); ?>" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
-            </svg>
-            <span class="fcb-value" style="font-size: <?php echo esc_attr( $text_size ); ?>; color: <?php echo esc_attr( $text_color ); ?>">00</span>
-            <span class="fcb-label" style="font-size: <?php echo esc_attr( $label_size ); ?>; color: <?php echo esc_attr( $label_color ); ?>">Days</span>
-        </div>
-        <!-- Repeat for hours, minutes, seconds with similar structure -->
-        <div class="fcb-hours">
-            <svg viewBox="0 0 100 100" class="dial">
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="#ddd" />
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="<?php echo esc_attr( $dial_color ); ?>" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
-            </svg>
-            <span class="fcb-value" style="font-size: <?php echo esc_attr( $text_size ); ?>; color: <?php echo esc_attr( $text_color ); ?>">00</span>
-            <span class="fcb-label" style="font-size: <?php echo esc_attr( $label_size ); ?>; color: <?php echo esc_attr( $label_color ); ?>">Hours</span>
-        </div>
-        <div class="fcb-minutes">
-            <svg viewBox="0 0 100 100" class="dial">
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="#ddd" />
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="<?php echo esc_attr( $dial_color ); ?>" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
-            </svg>
-            <span class="fcb-value" style="font-size: <?php echo esc_attr( $text_size ); ?>; color: <?php echo esc_attr( $text_color ); ?>">00</span>
-            <span class="fcb-label" style="font-size: <?php echo esc_attr( $label_size ); ?>; color: <?php echo esc_attr( $label_color ); ?>">Minutes</span>
-        </div>
-        <?php if ( $show_seconds ) : ?>
-        <div class="fcb-seconds">
-            <svg viewBox="0 0 100 100" class="dial">
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="#ddd" />
-                <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="<?php echo esc_attr( $dial_color ); ?>" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
-            </svg>
-            <span class="fcb-value" style="font-size: <?php echo esc_attr( $text_size ); ?>; color: <?php echo esc_attr( $text_color ); ?>">00</span>
-            <span class="fcb-label" style="font-size: <?php echo esc_attr( $label_size ); ?>; color: <?php echo esc_attr( $label_color ); ?>">Seconds</span>
-        </div>
-        <?php endif; ?>
-    </div>
-
-    <?php
+    
+    ob_start();
+    include 'final-countdown-block-template.php';
     return ob_get_clean();
 }
+
+function final_countdown_shortcode($atts) {
+    $a = shortcode_atts(array(
+        'due_date' => '2024-07-01T03:59:59',
+        'show_seconds' => 'false',
+        'end_message' => 'It\'s time!',
+        'end_message_color' => '#333',
+        'end_message_size' => '24px',
+        'dial_color' => '#003A64',
+        'dial_width' => '10',
+        'text_color' => '#333',
+        'text_size' => '24px',
+        'label_color' => '#666',
+        'label_size' => '18px',
+    ), $atts);
+
+    $due_date = $a['due_date'];
+    $show_seconds = $a['show_seconds'] === 'true';
+    $end_message = $a['end_message'];
+    $end_message_color = $a['end_message_color'];
+    $end_message_size = $a['end_message_size'];
+    $dial_color = $a['dial_color'];
+    $dial_width = $a['dial_width'];
+    $text_color = $a['text_color'];
+    $text_size = $a['text_size'];
+    $label_color = $a['label_color'];
+    $label_size = $a['label_size'];
+
+    ob_start();
+    include 'final-countdown-block-template.php';
+    return ob_get_clean();
+}
+add_shortcode('final_countdown', 'final_countdown_shortcode');
