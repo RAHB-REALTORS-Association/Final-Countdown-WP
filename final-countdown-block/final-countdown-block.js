@@ -236,12 +236,12 @@ wp.blocks.registerBlockType( 'final-countdown-block/countdown', {
                 {
                     label: 'Final Countdown',
                     instructions: 'Customize the countdown settings in the side panel.',
-                },
+                }/*,
                 wp.element.createElement(
                     'div',
                     { className: 'final-countdown-block-placeholder' },
                     wp.element.createElement('img', { src: 'path/to/your/placeholder-image.png', alt: 'Countdown Placeholder' })
-                )
+                )*/
             )
         );
     },
