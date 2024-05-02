@@ -3,7 +3,7 @@
 Plugin Name: The Final Countdown Block
 Plugin URI: https://github.com/RAHB-REALTORS-Association/Final-Countdown-WP/
 Description: Adds a customizable countdown block to WordPress.
-Version: 1.1.0
+Version: 1.1.1
 Author: RAHB
 Author URI: https://lab.rahb.ca
 License: GPL-2.0

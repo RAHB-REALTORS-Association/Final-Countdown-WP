@@ -39,6 +39,9 @@ Example:
 
 ## Changelog
 
+### 1.1.1
+- Fixed block preview
+
 ### 1.1.0
 - Added shortcode support
 
