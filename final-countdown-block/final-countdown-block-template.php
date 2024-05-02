@@ -7,7 +7,6 @@
         <span class="fcb-value" style="font-size: <?php echo esc_attr( $text_size ); ?>; color: <?php echo esc_attr( $text_color ); ?>">00</span>
         <span class="fcb-label" style="font-size: <?php echo esc_attr( $label_size ); ?>; color: <?php echo esc_attr( $label_color ); ?>">Days</span>
     </div>
-    <!-- Repeat for hours, minutes, seconds with similar structure -->
     <div class="fcb-hours">
         <svg viewBox="0 0 100 100" class="dial">
             <circle cx="50" cy="50" r="40" fill="none" stroke-width="<?php echo esc_attr( $dial_width ); ?>" stroke="#ddd" />
