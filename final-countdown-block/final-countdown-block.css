@@ -54,7 +54,7 @@
 
   .fcb-label {
     font-size: calc(inherit * 0.5); /* 50% of the original value */
-    margin-top: calc(inherit * 0.5); /* Adjusted spacing */
+    margin-top: calc(inherit * 0.5); /* 50% of the original value */
   }
 
   .fcb-value {
