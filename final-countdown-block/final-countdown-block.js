@@ -232,132 +232,58 @@ wp.blocks.registerBlockType( 'final-countdown-block/countdown', {
                 )
             ),
             wp.element.createElement(
-                wp.components.Placeholder,
-                {
-                    label: 'Final Countdown',
-                    instructions: 'Customize the countdown settings in the side panel.',
-                },
-                wp.element.createElement(
-                    'div',
-                    { className: 'final-countdown-block-placeholder' },
-                    wp.element.createElement('img', { src: 'path/to/your/placeholder-image.png', alt: 'Countdown Placeholder' })
-                )
+                'div',
+                { className: 'final-countdown-block-preview' },
+                wp.element.createElement('div', {
+                    className: 'final-countdown-block',
+                    'data-due-date': dueDate,
+                    'data-end-message': endMessage,
+                    'data-end-message-color': endMessageColor,
+                    'data-end-message-size': endMessageSize,
+                    dangerouslySetInnerHTML: {
+                        __html: `
+                            <div class="fcb-days">
+                                <svg viewBox="0 0 100 100" class="dial">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                </svg>
+                                <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Days</span>
+                            </div>
+                            <div class="fcb-hours">
+                                <svg viewBox="0 0 100 100" class="dial">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                </svg>
+                                <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Hours</span>
+                            </div>
+                            <div class="fcb-minutes">
+                                <svg viewBox="0 0 100 100" class="dial">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                </svg>
+                                <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Minutes</span>
+                            </div>
+                            ${showSeconds ? `
+                                <div class="fcb-seconds">
+                                    <svg viewBox="0 0 100 100" class="dial">
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                    </svg>
+                                    <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                    <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Seconds</span>
+                                </div>
+                            ` : ''}
+                        `
+                    }
+                })
             )
         );
     },
-    save: function(props) {
-        const { attributes } = props;
-        const { dueDate, showSeconds, endMessage, endMessageColor, endMessageSize, dialColor, dialWidth, textColor, textSize, labelColor, labelSize } = attributes;
-    
-        return wp.element.createElement(
-            'div',
-            { className: 'final-countdown-block', 'data-due-date': dueDate, 'data-end-message': endMessage, 'data-end-message-color': endMessageColor, 'data-end-message-size': endMessageSize },
-            wp.element.createElement(
-                'div',
-                { className: 'fcb-days' },
-                wp.element.createElement(
-                    'svg',
-                    { viewBox: '0 0 100 100', className: 'dial' },
-                    wp.element.createElement(
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: '#ddd' }
-                    ),
-                    wp.element.createElement(
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: dialColor, className: 'fcb-dial-background', 'stroke-dasharray': '251', 'stroke-dashoffset': '251' }
-                    )
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-value', style: { fontSize: textSize, color: textColor } },
-                    '00'
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-label', style: { fontSize: labelSize, color: labelColor } },
-                    'Days'
-                )
-            ),
-            wp.element.createElement(
-                'div',
-                { className: 'fcb-hours' },
-                wp.element.createElement(
-                    'svg',
-                    { viewBox: '0 0 100 100', className: 'dial' },
-                    wp.element.createElement(
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: '#ddd' }
-                    ),
-                    wp.element.createElement(
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: dialColor, className: 'fcb-dial-background', 'stroke-dasharray': '251', 'stroke-dashoffset': '251' }
-                    )
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-value', style: { fontSize: textSize, color: textColor } },
-                    '00'
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-label', style: { fontSize: labelSize, color: labelColor } },
-                    'Hours'
-                )
-            ),
-            wp.element.createElement(
-                'div',
-                { className: 'fcb-minutes' },
-                wp.element.createElement(
-                    'svg',
-                    { viewBox: '0 0 100 100', className: 'dial' },
-                    wp.element.createElement(
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: '#ddd' }
-                    ),
-                    wp.element.createElement(
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: dialColor, className: 'fcb-dial-background', 'stroke-dasharray': '251', 'stroke-dashoffset': '251' }
-                    )
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-value', style: { fontSize: textSize, color: textColor } },
-                    '00'
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-label', style: { fontSize: labelSize, color: labelColor } },
-                    'Minutes'
-                )
-            ),
-            showSeconds && wp.element.createElement(
-                'div',
-                { className: 'fcb-seconds' },
-                wp.element.createElement(
-                    'svg',
-                    { viewBox: '0 0 100 100', className: 'dial' },
-                    wp.element.createElement(
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: '#ddd' }
-                    ),
-                    wp.element.createElement(
-                
-                        'circle',
-                        { cx: '50', cy: '50', r: '40', fill: 'none', strokeWidth: dialWidth, stroke: dialColor, className: 'fcb-dial-background', 'stroke-dasharray': '251', 'stroke-dashoffset': '251' }
-                    )
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-value', style: { fontSize: textSize, color: textColor } },
-                    '00'
-                ),
-                wp.element.createElement(
-                    'span',
-                    { className: 'fcb-label', style: { fontSize: labelSize, color: labelColor } },
-                    'Seconds'
-                )
-            )
-        );
+    save: function() {
+        return null;
     },    
 } );
 

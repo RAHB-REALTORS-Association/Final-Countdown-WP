@@ -6,7 +6,7 @@
 
 .fcb-days, .fcb-hours, .fcb-minutes, .fcb-seconds {
   position: relative;
-  margin: 20px;
+  margin: 16px;
   text-align: center;
 }
 
@@ -26,47 +26,41 @@
 .fcb-label {
   font-size: 18px;
   font-weight: bold;
-  color: #666;
-  display: block; /* Ensure the label is a block-level element */
-  margin-top: 15px; /* Spacing between the dial and the label */
+  display: block;
+  margin-top: 16px; /* Spacing between the dial and the label */
 }
 
 .fcb-value {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
   position: absolute;
-  top: 35%;
+  top: 35%; /* Adjusts vertical spacing of value inside dial */
   left: 50%;
   transform: translate(-50%, -50%); /* Centers the number in the circle */
   z-index: 1; /* Ensures the number stays above the circle */
 }
   
 /* Responsive adjustments for mobile devices */
-@media (max-width: 768px) { /* Targets screens up to 768px wide */
+@media (max-width: 768px) {
   .fcb-days, .fcb-hours, .fcb-minutes, .fcb-seconds {
-    margin: 10px; /* Reduced margin */
+    margin: 8px; /* 50% of the original value */
     text-align: center;
   }
 
   .final-countdown-block svg {
-    width: 50px !important; /* Ensures this rule takes precedence */
-    height: 50px !important;
+    width: 75px !important; /* 75% of the original value */
+    height: 75px !important; /* 75% of the original value */
     margin: auto;
     transform: rotate(-90deg);
   }
 
-  .fcb-dial-background {
-    stroke-width: 9 !important; /* Adjusts the stroke width for the smaller dials */
-  }
-
   .fcb-label {
-    font-size: 9px; /* 50% of the original 18px */
-    margin-top: 8px; /* Adjusted spacing */
+    font-size: 14px; /* 75% of the original value */
+    margin-top: 12px; /* 75% of the original value */
   }
 
   .fcb-value {
-    font-size: 12px;
+    font-size: 18px; /* 75% of the original value */
   }
 }
 
