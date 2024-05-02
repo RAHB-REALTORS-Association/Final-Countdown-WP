@@ -57,12 +57,12 @@
   }
 
   .fcb-label {
-    font-size: 9px; /* 50% of the original 18px */
+    font-size: calc(inherit * 0.5); /* 50% of the original value */
     margin-top: 8px; /* Adjusted spacing */
   }
 
   .fcb-value {
-    font-size: 12px;
+    font-size: calc(inherit * 0.5); /* 50% of the original value */
   }
 }
 
