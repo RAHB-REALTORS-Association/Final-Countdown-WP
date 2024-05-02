@@ -232,11 +232,53 @@ wp.blocks.registerBlockType( 'final-countdown-block/countdown', {
                 )
             ),
             wp.element.createElement(
-                wp.components.Placeholder,
-                {
-                    label: 'Final Countdown',
-                    instructions: 'Customize the countdown settings in the side panel.',
-                }
+                'div',
+                { className: 'final-countdown-block-preview' },
+                wp.element.createElement('div', {
+                    className: 'final-countdown-block',
+                    'data-due-date': dueDate,
+                    'data-end-message': endMessage,
+                    'data-end-message-color': endMessageColor,
+                    'data-end-message-size': endMessageSize,
+                    dangerouslySetInnerHTML: {
+                        __html: `
+                            <div class="fcb-days">
+                                <svg viewBox="0 0 100 100" class="dial">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                </svg>
+                                <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Days</span>
+                            </div>
+                            <div class="fcb-hours">
+                                <svg viewBox="0 0 100 100" class="dial">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                </svg>
+                                <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Hours</span>
+                            </div>
+                            <div class="fcb-minutes">
+                                <svg viewBox="0 0 100 100" class="dial">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                </svg>
+                                <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Minutes</span>
+                            </div>
+                            ${showSeconds ? `
+                                <div class="fcb-seconds">
+                                    <svg viewBox="0 0 100 100" class="dial">
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="#ddd" />
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke-width="${dialWidth}" stroke="${dialColor}" class="fcb-dial-background" stroke-dasharray="251" stroke-dashoffset="251" />
+                                    </svg>
+                                    <span class="fcb-value" style="font-size: ${textSize}px; color: ${textColor}">00</span>
+                                    <span class="fcb-label" style="font-size: ${labelSize}px; color: ${labelColor}">Seconds</span>
+                                </div>
+                            ` : ''}
+                        `
+                    }
+                })
             )
         );
     },
